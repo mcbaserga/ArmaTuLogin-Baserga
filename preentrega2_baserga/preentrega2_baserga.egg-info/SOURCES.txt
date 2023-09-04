@@ -1,0 +1,5 @@
+setup.py
+preentrega2_baserga.egg-info/PKG-INFO
+preentrega2_baserga.egg-info/SOURCES.txt
+preentrega2_baserga.egg-info/dependency_links.txt
+preentrega2_baserga.egg-info/top_level.txt
