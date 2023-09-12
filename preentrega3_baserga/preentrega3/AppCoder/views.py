@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Alumno, Libros, Prestamo
 
 
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
+from django.views.generic import ListView,CreateView, DeleteView, UpdateView, DetailView
 from django.urls import reverse_lazy
 
 
@@ -29,17 +29,17 @@ class AlumnoDetail(DetailView):
     template_name = "AppCoder/cbv_alumno_list.html"
 
 
-class AlumnoreateView(CreateView):
+class AlumnoCreateView(CreateView):
     model = Alumno
     template_name = "AppCoder/cbv_alumno_create.html"
     success_url = reverse_lazy("alumno-list")
-    fields = ["nombre", "apellido"]
+    fields = ["nombre", "apellido", "email"]
 
 
 class AlumnoUpdateView(UpdateView):
     model = Alumno
     template_name = "AppCoder/cbv_alumno_update.html"
-    success_url = reverse_lazy("curso-list")
+    success_url = reverse_lazy("alumno-list")
     fields = ["nombre", "apellido", "email"]
 
 
@@ -66,14 +66,14 @@ class LibrosCreateView(CreateView):
     model = Libros
     template_name = "AppCoder/cbv_libros_create.html"
     success_url = reverse_lazy("libros-list")
-    fields = ["titulo", "edicion"]
+    fields = ["titulo", "autor", "edicion"]
 
 
 class LibrosUpdateView(UpdateView):
     model = Libros
     template_name = "AppCoder/cbv_libros_update.html"
     success_url = reverse_lazy("libros-list")
-    fields = ["edicion"]
+    fields = ["titulo", "autor", "edicion"]
 
 
 class LibrosDeleteView(DeleteView):

@@ -11,7 +11,7 @@
     <title>Agregar Alumno</title>
 </head>
 
-<body style="background-color: green;">
+<body>
     <form action="{% url 'alumno-create' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
