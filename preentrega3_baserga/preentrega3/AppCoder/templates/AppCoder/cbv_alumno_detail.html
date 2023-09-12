@@ -1,0 +1,12 @@
+{% extends "AppCoder/padre.html" %}
+
+
+{% block contenidoQueCambia %}
+
+{{ nombre }}
+<h1> Detalle del alumno </h1>
+
+{{ alumno.apellido }}<br>{{ alumno.nombre }}<br>{{ alumno.email }}
+
+<a href="{% url 'alumno-list' %}">Regresar</a>
+{% endblock %}
