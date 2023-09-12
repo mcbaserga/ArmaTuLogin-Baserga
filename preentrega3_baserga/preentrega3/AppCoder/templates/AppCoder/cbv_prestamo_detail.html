@@ -2,12 +2,11 @@
 
 
 {% block contenidoQueCambia %}
-<h4>Este es el contenido de Cursos!</h4>
 
 {{ nombre }}
-<h1> Detalle del curso </h1>
+<h1> Detalle del préstamo </h1>
 
-{{curso.curso}} - camada: {{ curso.camada }} ?
+<strong>{{prestamo.titulo}}</strong>, <strong>{{ prestamo.autor }}</strong> - En préstamo con: {{ prestamo.nombre }} {{ prestamo.apellido }}
 
-<a href="{% url 'curso-list' %}">Regresar</a>
+<a href="{% url 'prestamo-list' %}">Regresar</a>
 {% endblock %}

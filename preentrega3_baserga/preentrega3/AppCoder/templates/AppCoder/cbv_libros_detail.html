@@ -2,12 +2,11 @@
 
 
 {% block contenidoQueCambia %}
-<h4>Este es el contenido de Cursos!</h4>
 
 {{ nombre }}
-<h1> Detalle del curso </h1>
+<h1> Detalle del libro </h1>
 
-{{curso.curso}} - camada: {{ curso.camada }} ?
+{{libros.titulo}} - {{ libros.autor }} ?
 
-<a href="{% url 'curso-list' %}">Regresar</a>
+<a href="{% url 'libros-list' %}">Regresar</a>
 {% endblock %}

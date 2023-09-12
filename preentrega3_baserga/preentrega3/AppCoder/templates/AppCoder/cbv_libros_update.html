@@ -8,11 +8,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Curso</title>
+    <title>Editar Libro</title>
 </head>
 
-<body style="background-color: green;">
-    <form action="{% url 'curso-update' curso.pk %}" method="POST">
+<body>
+    <form action="{% url 'libros-update' libros.pk %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Editar">
