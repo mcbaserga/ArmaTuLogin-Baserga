@@ -1,0 +1,14 @@
+{% extends "Final/padre.html" %}
+
+{% block contenidoQueCambia %}
+
+{{ nombre }}
+<h1>Borrar Alumno:</h1>
+
+<p>Estás seguro que deseas borrar el alumno: <strong>{{alumno.apellido}}</strong>, <strong>{{ alumno.nombre }}</strong>?</p>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Eliminar">
+</form>
+
+{% endblock %}

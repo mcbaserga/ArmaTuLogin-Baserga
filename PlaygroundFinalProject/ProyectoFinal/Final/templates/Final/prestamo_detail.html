@@ -1,0 +1,12 @@
+{% extends "Final/padre.html" %}
+
+
+{% block contenidoQueCambia %}
+
+{{ nombre }}
+<h1> Detalle del préstamo </h1>
+
+<strong>{{prestamo.titulo}}</strong>, <strong>{{ prestamo.autor }}</strong> - En préstamo con: {{ prestamo.nombre }} {{ prestamo.apellido }}
+
+<a href="{% url 'prestamo-list' %}">Regresar</a>
+{% endblock %}

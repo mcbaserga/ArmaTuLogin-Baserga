@@ -1,0 +1,12 @@
+{% extends "Final/padre.html" %}
+
+
+{% block contenidoQueCambia %}
+
+{{ nombre }}
+<h1> Detalle del libro </h1>
+
+{{libros.titulo}} - {{ libros.autor }}
+
+<a href="{% url 'libros-list' %}">Regresar</a>
+{% endblock %}

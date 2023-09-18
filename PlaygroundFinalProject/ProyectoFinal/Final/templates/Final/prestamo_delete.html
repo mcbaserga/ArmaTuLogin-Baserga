@@ -1,0 +1,15 @@
+{% extends "Final/padre.html" %}
+
+
+{% block contenidoQueCambia %}
+
+{{ nombre }}
+<h1>Borrar Préstamo: {{curso.curso}}</h1>
+
+<p>Estás seguro que deseas borrar el préstamo del libro: <strong>{{prestamo.titulo}}</strong>, <strong>{{ prestamo.autor }}</strong> - {{ prestamo.nombre }} {{ prestamo.apellido }}?</p>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Eliminar">
+</form>
+
+{% endblock %}
