@@ -1,0 +1,7 @@
+{% extends 'Blog/padre.html' %}
+
+{% block contenidoQueCambia%}
+<h2>Te has deslogueado</h2>
+
+<button><a href="{% url 'login' %}">Volver a conectarte</a></button>
+{% endblock%}

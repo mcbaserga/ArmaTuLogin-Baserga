@@ -1,0 +1,13 @@
+{% extends "Blog/padre.html" %}
+
+
+{% block contenidoQueCambia %}
+
+<h1>Borrar perfil: {{profile.nombre}} ?</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Eliminar">
+</form>
+
+{% endblock %}

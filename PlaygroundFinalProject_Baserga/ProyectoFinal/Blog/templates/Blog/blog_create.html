@@ -1,0 +1,14 @@
+{% extends 'Blog/padre.html' %}
+
+{% block contenidoQueCambia %}
+
+<h1>Mi blog</h1>
+<h2>Crear una nueva entrada</h2>
+<body>
+    <form action="{% url 'blog-create' %}" method="POST"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Crear">
+    </form>
+</body>
+{% endblock %}

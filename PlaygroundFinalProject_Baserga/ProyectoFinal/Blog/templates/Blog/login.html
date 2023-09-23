@@ -1,0 +1,18 @@
+{% extends 'Blog/padre.html' %}
+
+{% block contenidoQueCambia%}
+
+<body>
+    {% if is_already_logged_in %}
+    <p>El usuario ya se encuentra conectado.</p>
+    {% else %}
+    <h2>Login</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Iniciar sesión">
+    </form>
+    {% endif %}
+</body>
+
+{% endblock%}
