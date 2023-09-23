@@ -22,9 +22,7 @@ from .views import (
     
     # Login
     login_view,
-    editar_usuario_view,
     registro_view,
-    CambiarContrasenia,
 )
 
 
@@ -50,10 +48,4 @@ urlpatterns = [
     path("signup/", registro_view, name="signup"),
     path("login/", login_view, name="login"),
     path("logout/", LogoutView.as_view(template_name="Blog/logout.html"), name="logout"),
-
-
-    # Edicion de usuario
-    path("editar-usuario/", editar_usuario_view, name="editar-usuario"),
-    path("cambiar-contrasenia/", CambiarContrasenia.as_view(), name="cambiar-contrasenia")
-
 ]

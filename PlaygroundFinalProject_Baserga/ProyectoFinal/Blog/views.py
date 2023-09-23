@@ -4,7 +4,6 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserCreationFormulario, UserEditionFormulario
-from django.contrib.auth.views import PasswordChangeView
 from .forms import MyProfileForm
 from .models import Profile, Blog
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
@@ -45,49 +44,6 @@ def registro_view(request):
                 "Blog/signup.html",
                 {"form": formulario}
             )
-
-
-# EDITAR USUARIO
-def editar_usuario_view(request):
-    if not request.user.is_authenticated:
-        return render(
-            request,
-            "Blog/login.html",
-            {"form": AuthenticationForm()}
-        )
-    if request.method == "GET":
-        return render(
-            request,
-            "Blog/editar_usuario.html",
-            {"form": UserChangeForm()}
-        )
-    else:
-        formulario = UserChangeForm(request.POST)
-        if formulario.is_valid():
-            informacion = formulario.cleaned_data
-            print(informacion)
-            user = request.user
-            user.email = informacion["email"]
-            user.first_name = informacion["first_name"]
-            user.last_name = informacion["last_name"]
-            user.save()
-
-            return render(
-                request,
-                "Blog/padre.html",
-                {"mensaje": f"Usuario creado"}
-            )
-        else:
-            return render(
-                request,
-                "Blog/editar-usuario.html",
-                {"form": formulario}
-            )
-
-class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):
-    template_name = "Blog/cambiar_contrasenia.html"
-    success_url = reverse_lazy("editar-usuario")
-
 
 # LOGIN
 
@@ -133,21 +89,23 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("profile-list")
     fields = ["imagen", "nombre", "descripcion", "link", "email"]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["is_already_logged_in"] = self.request.user.is_authenticated
-        return context
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
     
 class ProfileListView(LoginRequiredMixin, ListView):
     model = Profile
     context_object_name = "profiles"
     template_name = "Blog/my_profile_list.html"
 
+    def get_queryset(self):
+        return Profile.objects.filter(user=self.request.user)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["is_already_logged_in"] = self.request.user.is_authenticated
         return context
-
+    
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = "Blog/my_profile_detail.html"
@@ -179,15 +137,15 @@ class ProfileDeleteView(LoginRequiredMixin, DeleteView):
         return context
 
 # BLOG
-class BlogCreateView(CreateView):
+class BlogCreateView(LoginRequiredMixin, CreateView):
     model = Blog
     template_name = "Blog/blog_create.html"
     success_url = reverse_lazy("blog-list")
     fields = ["imagen", "titulo", "subtitulo", "cuerpo", "autor"]
     
-    class Meta:
-        model = Blog
-        exclude = ['fecha']    
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -199,11 +157,14 @@ class BlogListView(LoginRequiredMixin, ListView):
     context_object_name = "blogs"
     template_name = "Blog/blog_list.html"
 
+    def get_queryset(self):
+        return Blog.objects.filter(user=self.request.user)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["is_already_logged_in"] = self.request.user.is_authenticated
         return context
-
+    
 class BlogDetailView(DetailView):
     model = Blog
     context_object_name = "blog"

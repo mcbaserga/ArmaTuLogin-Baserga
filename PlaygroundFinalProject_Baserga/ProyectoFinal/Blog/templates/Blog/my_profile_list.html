@@ -1,7 +1,7 @@
 {% extends "Blog/padre.html" %}
 
 {% block contenidoQueCambia %}
-<div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; max-width: 600px; margin: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+<div style="padding: 20px; background-color: #fff; max-width: 40%; margin: auto;">
     <h4 style="color: #4a90e2; border-bottom: 2px solid #4a90e2; padding-bottom: 10px;">Mi perfil</h4>
 
     {% if profiles %}
@@ -12,18 +12,18 @@
             {% endfor %}
         </div>
     {% else %}
-        <button style="background-color: #4CAF50; color: white; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 15px;">
+        <button style="background-color: #4CAF50; color: white; padding: 8px 12px; border: none; border-radius: 50px; cursor: pointer; margin-bottom: 15px;">
             <a href="{% url 'profile-create' %}" style="color: white;">Nuevo</a>
         </button>
     {% endif %}
 
-    <div style="margin-top: 20px;">
+    <div style="margin-top: 20px; text-align: center;">
         {% for profile in profiles %}
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
                 <div style="flex-grow: 1;">
                     {% if profile.imagen %}
-                        <img src="{{ profile.imagen.url }}" style="max-width: 50%;">
+                        <img src="{{ profile.imagen.url }}" style="max-width: 100%;">
                     {% endif %}
                     <p style="color: #333; background-color: #eaf2ff; padding: 8px; border-radius: 5px; margin-bottom: 10px;">
                         Nombre: {{ profile.nombre }}<br>

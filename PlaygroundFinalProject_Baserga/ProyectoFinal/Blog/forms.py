@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, UserModel
 
-# PROFILE
+# USER
 class UserCreationFormulario(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
@@ -30,14 +30,3 @@ class UserEditionFormulario(UserChangeForm):
         model = UserModel
         fields = ["email", "first_name", "last_name"]
         help_texts = {k: "" for k in fields}
-
-
-
-# BLOG
-class Blog(forms.Form):
-    imagen = forms.CharField(max_length=50, label="Imagen")
-    titulo = forms.CharField(label="Titulo", max_length=24)
-    subtitulo = forms.CharField(max_length=50, label="Subtítulo")
-    cuerpo = forms.CharField(max_length=300, label="Texto")
-    autor = forms.CharField(max_length=50, label="Autor")
-    fecha = forms.DateTimeField()

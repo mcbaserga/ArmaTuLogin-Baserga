@@ -16,7 +16,8 @@
 </head>
 
 <body>
-<h2>Registro</h2>
+    <div style="text-align: center; padding: 1rem;">
+        <h2>Registro</h2>
 <form action="{% url 'signup' %}" method="POST">
     {% csrf_token %}
 
@@ -35,8 +36,10 @@
         </p>
     {% endfor %}
 
-    <input type="submit" value="Crear usuario">
+    <input class="btn btn-primary" type="submit" value="Crear usuario">
 </form>
+    </div>
+
 </body>
 </html>
 {% endblock %}
