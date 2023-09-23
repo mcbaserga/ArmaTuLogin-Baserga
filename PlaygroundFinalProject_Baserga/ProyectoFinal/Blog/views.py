@@ -16,6 +16,8 @@ def inicio_view(request):
     is_already_logged_in = request.user.is_authenticated
     return render(request, "Blog/inicio.html", {"is_already_logged_in": is_already_logged_in})
 
+def about(request):
+    return render(request, "Blog/about.html")
 
 # REGISTRO
 def registro_view(request):

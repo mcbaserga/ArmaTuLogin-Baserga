@@ -5,6 +5,7 @@ from . import views
 
 from .views import (
     inicio_view,
+    about,
     
     # Perfil
     ProfileCreateView,
@@ -29,6 +30,7 @@ from .views import (
 
 urlpatterns = [
     path('inicio/', views.inicio_view, name='inicio'),
+    path('about/', views.about, name='about'),
     
     # Perfil
     path("my_profile/new", ProfileCreateView.as_view(), name="profile-create"),

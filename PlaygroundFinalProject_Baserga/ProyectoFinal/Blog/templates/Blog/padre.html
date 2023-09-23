@@ -26,6 +26,7 @@
                         <a class="navbar-brand" href="{% url 'blog-list' %}">Mi blog</a>
                         <a class="navbar-brand" href="/accounts/logout/">Logout</a>
                     {% else %}
+                        <a class="navbar-brand" href="/accounts/about/">Sobre mí</a>
                         <a class="navbar-brand" href="/accounts/login/">Login</a>
                         <a class="btn btn-primary" href="/accounts/signup/">Crear usuario</a>
                     {% endif %}
